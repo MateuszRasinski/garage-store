@@ -15,13 +15,6 @@ buildscript {
     }
 }
 
-targetCompatibility = 1.8
-
-war {
-    baseName = 'garage-store'
-    version = '0.0.1-SNAPSHOT'
-}
-
 repositories {
     jcenter()
 }
@@ -32,10 +25,24 @@ configurations {
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "org.springframework.boot:spring-boot-starter-security"
     providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
     testCompile "org.springframework:spring-test"
     testCompile "org.testng:testng:6.8.8"
     testCompile "org.mockito:mockito-core"
+}
+
+version = '0.0.1-SNAPSHOT'
+description = "Example Java web application"
+
+war {
+    baseName = project.name
+    version = project.version
+}
+
+processResources {
+    expand(project.properties)
 }
 
 task wrapper(type: Wrapper) {
