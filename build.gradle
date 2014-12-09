@@ -27,6 +27,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-starter-security"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
     providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
     testCompile "org.springframework:spring-test"
     testCompile "org.testng:testng:6.8.8"
@@ -42,7 +43,8 @@ war {
 }
 
 processResources {
-    expand(project.properties)
+    expand project.properties
+    exclude 'templates/**'
 }
 
 task wrapper(type: Wrapper) {
